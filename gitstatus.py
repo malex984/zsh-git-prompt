@@ -8,6 +8,9 @@ from subprocess import Popen, PIPE
 
 output,error = Popen(['git','status'], stdout=PIPE, stderr=PIPE).communicate()
 
+output = output.decode("utf-8")
+error = error.decode("utf-8")
+
 if error:
 	import sys
 	sys.exit(0)
@@ -25,6 +28,9 @@ unmerged = re.compile(r'^# Unmerged paths:$', re.MULTILINE)
 
 def execute(*command):
 	out, err = Popen(*command, stdout=PIPE, stderr=PIPE).communicate()
+	out = out.decode("utf-8")
+	err = err.decode("utf-8")
+
 	if not err:
 		nb = len(out.splitlines())
 	else:
@@ -61,8 +67,8 @@ else:
 		remote += match.groups()[2]
 	elif lines[2:]:
 		div_match = diverge_re.match(lines[2])
-	 	if div_match:
+		if div_match:
 			remote = "{behind}{1}{ahead of}{0}".format(*div_match.groups(), **symbols)
 
-print '\n'.join([branch,remote,status])
+print ('\n'.join([branch,remote,status]))
 

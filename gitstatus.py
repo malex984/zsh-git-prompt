@@ -18,8 +18,8 @@ branch = branch[11:-1]
 
 status = ''
 
-changed = [namestat[0] for namestat in Popen(['git','diff','--name-status'], stdout=PIPE).communicate()[0].splitlines()]
-staged = [namestat[0] for namestat in Popen(['git','diff', '--staged','--name-status'], stdout=PIPE).communicate()[0].splitlines()]
+changed = [namestat[0] for namestat in Popen(['git','diff','--name-status'], stdout=PIPE).communicate()[0].decode("utf-8").splitlines()]
+staged = [namestat[0] for namestat in Popen(['git','diff', '--staged','--name-status'], stdout=PIPE).communicate()[0].decode("utf-8").splitlines()]
 nb_changed = len(changed) - changed.count('U')
 nb_U = staged.count('U')
 nb_staged = len(staged) - nb_U
@@ -29,7 +29,7 @@ if nb_U:
 	status += '%s%s' % (symbols['unmerged'], nb_U)
 if nb_changed:
 	status += '%s%s' % (symbols['changed'], nb_changed)
-nb = len(Popen(['git','ls-files','--others','--exclude-standard'],stdout=PIPE).communicate()[0].splitlines())
+nb = len(Popen(['git','ls-files','--others','--exclude-standard'],stdout=PIPE).communicate()[0].decode("utf-8").splitlines())
 if nb:
 	status += symbols['untracked']
 if status == '':
@@ -38,11 +38,11 @@ if status == '':
 remote = ''
 
 if not branch: # not on any branch
-	branch = symbols['sha1']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0][:-1]
+	branch = symbols['sha1']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0].decode("utf-8")[:-1]
 else:
-	remote_name = Popen(['git','config','branch.%s.remote' % branch], stdout=PIPE).communicate()[0].strip()
+	remote_name = Popen(['git','config','branch.%s.remote' % branch], stdout=PIPE).communicate()[0].decode("utf-8").strip()
 	if remote_name:
-		merge_name = Popen(['git','config','branch.%s.merge' % branch], stdout=PIPE).communicate()[0].strip()
+		merge_name = Popen(['git','config','branch.%s.merge' % branch], stdout=PIPE).communicate()[0].decode("utf-8").strip()
 		if remote_name == '.': # local
 			remote_ref = merge_name
 		else:

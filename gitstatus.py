@@ -64,5 +64,5 @@ else:
 		if ahead:
 			remote += '%s%s' % (symbols['ahead of'], ahead)
 	
-print('\n'.join([branch,remote,status]))
+print('\n'.join([branch.decode("utf-8"),remote.decode("utf-8"),status.decode("utf-8")]))
 

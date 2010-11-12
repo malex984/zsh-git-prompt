@@ -63,6 +63,11 @@ else:
 			remote += '%s%s' % (symbols['behind'], behind)
 		if ahead:
 			remote += '%s%s' % (symbols['ahead of'], ahead)
-	
-print('\n'.join([branch.decode("utf-8"),remote.decode("utf-8"),status.decode("utf-8")]))
+
+#### AttributeError: 'str' object has no attribute 'decode'
+# print('\n'.join([branch.decode("utf-8"),remote.decode("utf-8"),status.decode("utf-8")]))
+
+# branch = branch.decode("utf-8")
+# remote = remote.decode("utf-8")
+print('\n'.join([branch,remote,status]))
 

@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # change those symbols to whatever you prefer
-symbols = {'ahead of': '↑', 'behind': '↓', 'staged':'♦', 'changed':'‣', 'untracked':'…', 'clean':'⚡', 'unmerged':'≠', 'sha1':':'}
+symbols = {'ahead of': u'↑', 'behind': u'↓', 'staged': u'♦', 'changed': u'‣', 'untracked': u'…', 'clean': u'⚡', 'unmerged': u'≠', 'sha1': u':'}
 
 from subprocess import Popen, PIPE
 

@@ -47,7 +47,7 @@ if changed.search(output):
 	nb = execute(['git','diff','--name-only', '--diff-filter=ACDMRT'])
 	status += '%s%s' % (symbols['changed'], nb)
 if untracked.search(output):
-## 		nb = len(Popen(['git','ls-files','--others','--exclude-standard'],stdout=PIPE).communicate()[0].splitlines())
+## 		nb = len(Popen(['git','ls-files','--others','--exclude-standard'],stdout=PIPE).communicate()[0].decode("utf-8").splitlines())
 ## 		status += "%s" % (symbols['untracked']*(nb//3 + 1), )
 	status += symbols['untracked']
 if status == '':
@@ -57,7 +57,7 @@ remote = ''
 
 bline = lines[0]
 if bline.find('Not currently on any branch') != -1:
-	branch = symbols['sha1']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0][:-1]
+	branch = symbols['sha1']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0].decode("utf-8")[:-1]
 else:
 	branch = bline.split(' ')[3]
 	bstatusline = lines[1]

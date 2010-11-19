@@ -2,7 +2,9 @@
 # -*- coding: UTF-8 -*-
 
 # change those symbols to whatever you prefer
-symbols = {'ahead of': u'↑', 'behind': u'↓', 'staged': u'♦', 'changed': u'‣', 'untracked': u'…', 'clean': u'⚡', 'unmerged': u'≠', 'sha1': u':'}
+
+#symbols = {'ahead of': b'↑', 'behind': b'↓', 'staged': b'♦', 'changed': b'‣', 'untracked': b'…', 'clean': b'⚡', 'unmerged': b'≠', 'sha1': b':'}
+symbols = {'ahead of': '↑', 'behind': '↓', 'staged': '♦', 'changed': '‣', 'untracked': '…', 'clean': '⚡', 'unmerged': '≠', 'sha1': ':'}
 
 from subprocess import Popen, PIPE
 
@@ -65,9 +67,6 @@ else:
 			remote += '%s%s' % (symbols['ahead of'], ahead)
 
 #### AttributeError: 'str' object has no attribute 'decode'
-# print('\n'.join([branch.decode("utf-8"),remote.decode("utf-8"),status.decode("utf-8")]))
-
-# branch = branch.decode("utf-8")
-# remote = remote.decode("utf-8")
+#status = status.decode("utf-8")
 print('\n'.join([branch,remote,status]))
 

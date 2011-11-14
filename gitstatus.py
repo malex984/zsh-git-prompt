@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: UTF-8 -*-
 
 # change those symbols to whatever you prefer
@@ -63,5 +63,5 @@ out = '\n'.join([
 	changed,
 	untracked,
 	clean])
-print out
+print (out)
 

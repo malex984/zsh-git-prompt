@@ -39,7 +39,7 @@ function update_current_git_vars() {
     unset __CURRENT_GIT_STATUS
 
     local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
-    _GIT_STATUS=`python ${gitstatus}`
+    _GIT_STATUS=`python2 ${gitstatus}`
     __CURRENT_GIT_STATUS=("${(@f)_GIT_STATUS}")
 	GIT_BRANCH=$__CURRENT_GIT_STATUS[1]
 	GIT_REMOTE=$__CURRENT_GIT_STATUS[2]
@@ -92,3 +92,8 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="…"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 
 
+
+
+function prompt_git_info() {
+    git_super_status
+}
